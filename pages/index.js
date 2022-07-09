@@ -14,7 +14,7 @@ export default function Home() {
     </div>
     <div>
       <h1 id='timerText'>Today's Date</h1>
-      <hr id='hline' color='greenyellow'/>
+      <hr className='hrLine' color='greenyellow'/>
     </div>
     <div>
       <h1 id='timer'>{Today.getMonth() + "/" + Today.getUTCDate() + "/" + Today.getFullYear()}</h1>
