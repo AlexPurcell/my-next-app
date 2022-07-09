@@ -1,0 +1,60 @@
+/* html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+} */
+* {
+    background-color: black;
+    }
+    
+    
+    #firstText {
+      text-align: center;
+      padding-top: 10%;
+      color: greenyellow;
+      font-size: 3rem;
+      user-select: none;
+    }
+    
+    #timerText {
+      color: greenyellow;
+      text-align: center;
+      user-select: none;
+    }
+    
+    .hrLine {
+      width: 50%;
+      margin: 0 auto;
+    }
+    
+    #timer {
+      color: greenyellow;
+      text-align: center;
+      user-select: none;
+    }
+    
+    // #firstText:hover {
+    //   transition: all .5s linear;
+    //   color: blue;
+    // }
+    
+    // #timerText:hover {
+    //   transition: all .5s linear;
+    //   color: blue;
+    // }
+    
+    // #timer:hover {
+    //   transition: all .5s linear;
+    //   color: blue;
+    // }
