@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import {Thread} from './components/Thread';
+import {CreateMessage} from './components/CreateMessage';
 
 // import {CurrentDateTime} from './components/CurrentDateTime'
 
@@ -21,7 +21,7 @@ export default function Home() {
     <>
     <style>{css}</style>
      {/* <Navbar/> */}
-     <Thread/>
+     <CreateMessage/>
      
     </>
   )
