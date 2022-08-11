@@ -16,8 +16,9 @@ model User {
   name  String?
 }
 
-model Messages {
-  id    Int     @id @default(autoincrement())
+model FeatureRequest {
+  id    String     @id @default(cuid())
   name String  @unique
-  number  String?
+  request  String?
+  submitted  Boolean @default(true)
 }

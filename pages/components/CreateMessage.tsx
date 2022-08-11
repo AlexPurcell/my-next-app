@@ -1,45 +1,69 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 
 
 
 export const CreateMessage = () => {
     const [message, setMessage] = useState<any>(null)
+    const [posts, setPosts] = useState<Array<any>>([])
+
 
   const url = "http://localhost:3000/api/threads/new";
+  const secondUrl = "http://localhost:3000/api/threads/features";
+
 
   const addMessage = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formValues: any = e.target;
     console.log("name", formValues.name.value);
-    console.log("number", formValues.number.value);
+    console.log("Request", formValues.request.value);
 
     const name: string = formValues.name.value;
-    const number: number = formValues.number.value;
+    const request: string = formValues.request.value;
 
     const response = await fetch(url, {
       method: "POST",
-      body: JSON.stringify({ name: name, number: number }),
+      body: JSON.stringify({ name: name, request: request }),
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
     });
 
-    const actualData = await response.json();
-    const messageData = {name: actualData.messageObj.name, number: actualData.messageObj.number}
-    console.log("Response from API Route:", actualData);
-    setMessage(messageData)
-
+    latestFeatureRequests()
   };
-
   
+  const latestFeatureRequests = async () => {
+    const response = await fetch(secondUrl, {
+      method: "POST",
+      body: JSON.stringify({ posts }),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    const postsResponse = await response.json();
+    setPosts(postsResponse)
+  }
+
+  useEffect(() => {
+    latestFeatureRequests()
+}, []);
+
+
+// LEAVING OFF ON FIXING THE ARRAY / MAKING A LOOP TO SHOW ALL THE POSTDATA NAMES INSIDE THE <h1></h1>
 
   return (
     <>
       <div>
-        {message !== null && <h1>{message?.name} {message?.number}</h1>}
+        <div>
+        {message !== null && <h1>{message?.name} {message?.request}</h1>}
+        </div>
+        <div>
+          {<div>{posts.map((post) => {
+            return (<div key={post.id}><label htmlFor="">Title</label><h1>{post.name}</h1></div>)
+          })}</div>}
+        </div>
         <form onSubmit={(e) => addMessage(e)}>
           <input
             id="name"
@@ -48,10 +72,10 @@ export const CreateMessage = () => {
             type="text"
           ></input>
           <input
-            id="number"
+            id="request"
             // value={number}
-            placeholder="number"
-            type="number"
+            placeholder="Request"
+            type="text"
           ></input>
           <button>Submit</button>
         </form>

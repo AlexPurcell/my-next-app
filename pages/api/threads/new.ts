@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient, Prisma } from "@prisma/client";
+import prisma from "../../../prisma/client";
 
-const prisma = new PrismaClient();
 // const messages: Array<any> = [];
 
 export default async function handler(
@@ -19,12 +18,18 @@ export default async function handler(
 
     console.log(req.body)
 
-    const newMessage = await prisma.messages.create({
+    const newMessage = await prisma.featureRequest.create({
         data: {
             name: req.body.name,
-            number: req.body.number
-        }
+            request: req.body.request
+        },
+
     })
+
+    console.log("Data: ", newMessage)
+
+
+
 
     res.status(201).json({ messageObj: newMessage });
 
