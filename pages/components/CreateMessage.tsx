@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import styles from '/styles/CreateMessage.module.scss';
 
 
 
@@ -59,11 +60,11 @@ export const CreateMessage = () => {
         <div>
         {message !== null && <h1>{message?.name} {message?.request}</h1>}
         </div>
-        <div>
-          {<div>{posts.map((post) => {
-            return (<div key={post.id}><label htmlFor="">Title</label><h1>{post.name}</h1></div>)
-          })}</div>}
-        </div>
+        <section className={styles.container}>
+          {posts.map((post) => {
+            return (<div className={styles.mySection} key={post.id}><h1>{post.name}</h1></div>)
+          })}
+        </section>
         <form onSubmit={(e) => addMessage(e)}>
           <input
             id="name"
